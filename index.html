@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -11,11 +11,12 @@
       background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
       color: #fff;
     }
@@ -27,26 +28,30 @@
     }
 
     h1 {
-      font-size: 3.5em;
+      font-size: 3em;
       margin: 0.2em;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+      animation: bounceIn 2s ease;
+      background: linear-gradient(90deg, #ff9a9e, #fff, #fbc2eb, #fff, #a6c1ee);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
     }
 
     p {
-      font-size: 1.5em;
-      max-width: 600px;
+      font-size: 1.2em;
+      max-width: 700px;
       line-height: 1.6;
-    }
-
-    .balloons {
-      font-size: 3em;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
+      background: rgba(0,0,0,0.3);
+      padding: 15px 25px;
+      border-radius: 15px;
+      animation: fadeIn 3s ease;
     }
 
     .btn {
@@ -61,26 +66,158 @@
       text-decoration: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: transform 0.2s, background 0.3s;
+      animation: fadeInUp 2s ease;
     }
 
     .btn:hover {
       background: #ff3b2e;
       transform: scale(1.1);
     }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* Globos */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      font-size: 3rem;
+      animation: float linear forwards;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Confeti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
+
+    /* Fuegos artificiales */
+    .firework {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2em; }
+      p { font-size: 1em; padding: 10px 15px; }
+      .btn { font-size: 1em; padding: 10px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8em; }
+      p { font-size: 0.9em; }
+    }
   </style>
 </head>
 <body>
-  <div class="balloons">🎈🎂🎉</div>
-  <h1>¡Feliz Cumpleaños querida amiga! 🥳</h1>
+  <h1>🎈 ¡Feliz Cumpleaños mi querida amiga Andrea! 🥳</h1>
   <p>
-    Otro año mas aqui, aunque no hablemos muy seguido... ya ves que me acuerdo de ti en este día tan especial.<br>
-    Cada vez mas mayores jajaja pero bueno asi es la vida y espero que la disfrutes mucho, hay momentos tristes y alegres,
-    eso es vivir creo XD y tenemos que superarnos<br>
-    En verdad espero que estes bien ya que no se mucho de ti desde hace 3 meses ? yo andaba ocupado
-    y si... tengo cosas para contarte jajaja<br>
-    Bueno, espero que la pases super bien, te lo mereces.<br>
-    Te quiero mucho, un abrazo enorme y que cumplas muchos mas! 🎉🎂🎈
+    Otro año más aquí, aunque no hablemos muy seguido... ya ves que me acuerdo de ti en este día tan especial.<br>
+    Cada vez más mayores jajaja pero bueno, así es la vida y espero que la disfrutes mucho. 
+    Hay momentos tristes y alegres, eso es vivir creo XD y tenemos que superarnos.<br><br>
+    En verdad espero que estés bien ya que no sé mucho de ti desde hace 3 meses 🤔 yo andaba ocupado
+    y sí... tengo cosas para contarte jajaja.<br><br>
+    Bueno, espero que la pases súper bien, te lo mereces.<br>
+    ¡Te quiero mucho, un abrazo enorme y que cumplas muchos más! 🎉🎂🎈
   </p>
-  <a class="btn" href="https://www.youtube.com/watch?v=90RLzVUuXe4" target="_blank">Una buena canción xd 🎶</a>
+  <a class="btn" href="https://www.youtube.com/watch?v=90RLzVUuXe4" target="_blank">🎶 Aquí un temazo 🎶</a>
+
+  <script>
+    const emojis = ["🎈","🎉","🎂","🥳"];
+    const colors = ["#ff6f61","#ffeb3b","#4caf50","#2196f3","#9c27b0"];
+
+    // Confeti infinito
+    setInterval(() => {
+      for (let i = 0; i < 5; i++) createConfetti();
+      for (let i = 0; i < 2; i++) createBalloon();
+    }, 300);
+
+    // Globos iniciales
+    for (let i = 0; i < 15; i++) createBalloon();
+
+    function createBalloon(x = Math.random() * 100 + "vw") {
+      let balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = x;
+      balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+      balloon.style.fontSize = (2 + Math.random() * 3) + "rem";
+      balloon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 10000);
+    }
+
+    function createConfetti(x = Math.random() * 100 + "vw") {
+      let confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = x;
+      confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+      confetti.style.animationDuration = (3 + Math.random() * 3) + "s";
+      confetti.style.animationDelay = (Math.random() * 5) + "s";
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 8000);
+    }
+
+    // 🎆 Fuegos artificiales al hacer clic
+    document.body.addEventListener("click", (e) => {
+      createFirework(e.clientX, e.clientY);
+    });
+
+    function createFirework(x, y) {
+      for (let i = 0; i < 30; i++) {
+        let particle = document.createElement("div");
+        particle.classList.add("firework");
+        particle.style.width = "6px";
+        particle.style.height = "6px";
+        particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+        document.body.appendChild(particle);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.random() * 100 + 50;
+        const dx = Math.cos(angle) * radius;
+        const dy = Math.sin(angle) * radius;
+
+        particle.animate([
+          { transform: "translate(0,0)", opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+        ], {
+          duration: 1500,
+          easing: "ease-out"
+        });
+
+        setTimeout(() => particle.remove(), 1500);
+      }
+    }
+  </script>
+  
 </body>
 </html>
